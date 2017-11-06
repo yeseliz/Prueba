@@ -11,9 +11,10 @@ class Discusion extends Model
     public $timestamps=false;
     protected $fillable=[
     'actividad',
-    'fecha'
+    'fecha',
     'hora',
-    'semana'
-    ]
+    'semana',
+    'condicion'
+    ];
 
 }

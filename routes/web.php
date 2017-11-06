@@ -12,7 +12,21 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 Route::resource('discusion','DiscusionController');
+Route::resource('seguridad/usuario','UsuarioController');
+//Route::resource('seguridad/usuario/{id}','UsuarioController');
+Route::resource('local','LocalController');
+
+Route::resource('asignatura','AsignaturaController');
+
+Route::resource('reserva','ReservaController');
+Route::auth();
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
+Route::get('/{slug?}', 'HomeController@index');
+
+
+
