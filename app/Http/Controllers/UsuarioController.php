@@ -34,6 +34,7 @@ class UsuarioController extends Controller
     public function store(UsuarioFormRequest $request){
     	$usuario=new User;
     	$usuario->name=$request->get('name');
+        $usuario->name=$request->get('username');
     	$usuario->email=$request->get('email');
     	$usuario->password=bcrypt($request->get('password'));
     	$usuario->save();
@@ -47,6 +48,7 @@ class UsuarioController extends Controller
     public function update(UsuarioFormRequest $request, $id){
     	$usuario=User::findOrFail($id);
     	$usuario->name=$request->get('name');
+        $usuario->name=$request->get('username');
         $usuario->email=$request->get('email');
     	$usuario->password=bcrypt($request->get('password'));
     	$usuario->update();

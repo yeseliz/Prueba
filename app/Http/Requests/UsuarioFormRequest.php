@@ -24,11 +24,11 @@ class UsuarioFormRequest extends FormRequest
     public function rules()
     {
         return [
-       return [
-            'name' => 'required|max:255',
-            //'email' => 'required|email|max:255|unique:users',
-            'email' => 'required|string|email|max:255|unique:users,id'.$this->id,﻿
-            'password' => 'required|min:6|confirmed',
+          'name' => 'required|string|max:255',
+          'username' => 'required|string|name|max:8|unique:users', 
+          'email' => 'required|string|email|max:255|unique:users', 
+          'password' => 'required|string|min:6|confirmed'
         ];
     }
 }
+

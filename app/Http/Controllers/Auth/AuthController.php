@@ -62,13 +62,13 @@ class AuthController extends Controller
         public function postLogin(Request $request)
    {
     $this->validate($request, [
-        'email' => 'required',
+        'username' => 'required',
         'password' => 'required',
     ]);
 
 
 
-    $credentials = $request->only('email', 'password');
+    $credentials = $request->only('username', 'password');
 
     if ($this->auth->attempt($credentials, $request->has('remember')))
     {
@@ -100,6 +100,7 @@ class AuthController extends Controller
    {
     $this->validate($request, [
         'name' => 'required',
+        'username' => 'required',
         'email' => 'required',
         'password' => 'required',
     ]);
@@ -110,6 +111,7 @@ class AuthController extends Controller
 
     $user=new User;
     $user->name=$data['name'];
+     $user->username=$data['username'];
     $user->email=$data['email'];
     $user->password=bcrypt($data['password']);
 
