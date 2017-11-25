@@ -14,19 +14,17 @@
 			<table class="table table-striped table-bordered table-condensed table-hover">
 				<thead>
 				<th>Actividad</th>
-				<th>Fecha</th>
-				<th>Hora</th>
-				<th>Semana</th>
-				<th>Asignatura</th>
+				<th>Fecha de Inicio</th>
+				<th>Fecha de Finalización</th>
+				<th>N° de semana</th>
 				<th>Opciones</th>
 				</thead>
 				@foreach ($discusiones as $d)
 				<tr>
 				<td>{{ $d->actividad}}</td>
 				<td>{{ $d->fecha}}</td>
-				<td>{{ $d->hora}}</td>
+				<td>{{ $d->fecha_fin}}</td>
 				<td>{{ $d->semana}}</td>
-				<td>{{ $d->asignatura}}</td>
 				<td>
 					<a href="{{URL::action('DiscusionController@edit',$d->iddiscusion)}}"><button class ="btn btn-success">Editar</button></a>
 					<a href="" data-target="#modal-delete-{{$d->iddiscusion}}" data-toggle="modal"><button class ="btn btn-success"> Eliminar</button></a>

@@ -14,13 +14,11 @@
 			<table class="table table-striped table-bordered table-condensed table-hover">
 				<thead>
 				<th>Asignatura</th>
-				<th>Local</th>
 				<th>Opciones</th>
 				</thead>
 				@foreach ($asignaturas as $a)
 				<tr>
 				<td>{{ $a->nombre_asignatura}}</td>
-				<td>{{ $a->local}}</td>
 			
 				<td>
 					<a href="{{URL::action('AsignaturaController@edit',$a->idasignatura)}}"><button class ="btn btn-success">Editar</button></a>

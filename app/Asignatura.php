@@ -12,7 +12,6 @@ class Asignatura extends Model
     protected $fillable=[
     'idlocal',
     'nombre_asignatura',
-    'estado',
     'condicion'
     
     ];

@@ -1,0 +1,17 @@
+
+   PASOS
+
+1. Clonar el proyecto de git
+2. Herramientas a utilizar: mysql y xampp o wamp
+3. En http://localhost:81/phpmyadmin crear una nueva base de datos y nombrarla como
+   dbsistema, tipo de codificación: utf8_unicode_ci.
+4. Importar a la base que se acaba de crear, el script que está en este proyecto con 
+   nombre "dbsistema" 
+5. Iniciar xampp o wamp y entrar a la dirección http://localhost/carpeta_proyecto/public
+6. Hay un archivo nombrado .env.example, copiarlo y nombrarlo como .env y colocar su
+   username y su password de phpmyadmin y tambien el nombre de la base "dbsistema"
+7. En la consola ubicarse donde esté el proyecto y ejecutar "php artisan migrate"
+8. En el login las credenciales son: 
+    carnet: user
+    contraseña: 1234
+8. Listo...

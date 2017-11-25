@@ -24,7 +24,6 @@ class AsignaturaFormRequest extends FormRequest
     public function rules()
     {
             return [
-            'idlocal'=>'required',
             'nombre_asignatura'=>'required|max:45'
         ];
     }

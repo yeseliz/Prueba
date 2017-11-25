@@ -24,10 +24,9 @@ class DiscusionFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'idasignatura'=>'required',
             'actividad'=>'required|max:50',
             'fecha'=>'required',
-            'hora'=>'required',
+            'fecha_fin'=>'required',
             'semana'=>'required|max:2'
         ];
     }

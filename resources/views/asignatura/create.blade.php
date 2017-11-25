@@ -25,18 +25,7 @@
 	</div>
 </div>
 
-<div class="col-lg-6 col-sm-6 col-md-6 col-sx-12">
- <div class="form-group">
- <label>Local</label>
- <select name="idlocal" class="form-control">
- @foreach($locales as $lo)
- <option value="{{$lo->idlocal}}">{{$lo->lugar}}</option>
- @endforeach
- </select>
-	
 
-</div>
-</div>
 <div class="col-lg-6 col-sm-6 col-md-6 col-sx-12">
 		<div class="form-group">
 			<button class="btn btn-success" type="submit">Guardar</button>

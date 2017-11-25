@@ -13,6 +13,6 @@ class Reserva extends Model
     'idlocal',
     'fecha',
     'hora',
-    'estado'
+    'idasignatura'
     ];
 }

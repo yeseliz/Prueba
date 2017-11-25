@@ -8,6 +8,8 @@ use tpi\Discusion;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 use tpi\Http\Requests\DiscusionFormRequest;
+use tpi\Http\Requests\AsignaturaFormRequest;
+use tpi\Http\Controllers\Asignatura;
 
 
 class DiscusionController extends Controller
@@ -21,35 +23,34 @@ class DiscusionController extends Controller
    {
     if($request){
         $query=trim($request->get('searchText'));
-        $discusiones=DB::table('discusion as d')
-        ->join('asignatura as asi', 'd.idasignatura','=','asi.idasignatura')
-        ->select('d.iddiscusion','d.actividad', 'd.fecha', 'd.hora', 'd.semana', 'asi.nombre_asignatura as asignatura')
-        ->where('d.actividad','LIKE','%'.$query.'%')
-        ->orderBy('d.iddiscusion','desc')
-        ->paginate(3);
+        $discusiones=DB::table('discusion')->where('actividad','LIKE','%'.$query.'%')
+        ->where('condicion', '=', '1')
+        ->orderBy('semana','asc')
+        ->paginate(6);
 
         return view('discusion.index',["discusiones"=>$discusiones,"searchText"=>$query]);
     }
    }
 
+
    public function create()
    {
-     $asignaturas=DB::table('asignatura')->where('condicion','=','1')->get();
-//->where('idasignatura','=','idasignatura');
-     return view("discusion.create",["asignaturas"=>$asignaturas]);
+     return view("discusion.create");
    }
+
 
    public function store(DiscusionFormRequest $request)
    {
-     $discusion=new discusion;
-     $discusion->idasignatura=$request->get('idasignatura');
+     $discusion=new Discusion;
      $discusion->actividad=$request->get('actividad');
      $discusion->fecha=$request->get('fecha');
-     $discusion->hora=$request->get('hora'); 
+     $discusion->fecha_fin=$request->get('fecha_fin');
      $discusion->semana=$request->get('semana');
+     $discusion->condicion='1';
      $discusion->save();
      return Redirect::to('discusion');
    }
+
 
    public function show($id)
    {
@@ -58,18 +59,15 @@ class DiscusionController extends Controller
 
    public function edit($id)
    {
-    $discusion=Discusion::findOrFail($id);
-    $asignaturas=DB::table('asignatura')->where('condicion','=','1')->get();
-    return view("discusion.edit",["discusion"=>$discusion, "asignaturas"=>$asignaturas]);
+   return view("discusion.edit",["discusion"=>Discusion::findOrFail($id)]);
    }
 
    public function update(DiscusionFormRequest $request, $id)
    {
     $discusion=Discusion::findOrFail($id);
-    $discusion->idasignatura=$request->get('idasignatura');
     $discusion->actividad=$request->get('actividad');
     $discusion->fecha=$request->get('fecha');
-    $discusion->hora=$request->get('hora'); 
+    $discusion->fecha_fin=$request->get('fecha_fin');
     $discusion->semana=$request->get('semana');
 
     $discusion->update();

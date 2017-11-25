@@ -2,10 +2,10 @@
 -- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 25-11-2017 a las 05:46:05
--- Versión del servidor: 10.1.25-MariaDB
--- Versión de PHP: 5.6.31
+-- Host: 127.0.0.1:3306
+-- Generation Time: Nov 25, 2017 at 10:09 AM
+-- Server version: 10.1.25-MariaDB
+-- PHP Version: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,52 +19,83 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `dbsistema`
+-- Database: `dbsistema`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `asignatura`
+-- Table structure for table `asignatura`
 --
 
 CREATE TABLE `asignatura` (
   `idasignatura` int(11) NOT NULL,
   `nombre_asignatura` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `estado` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `condicion` tinyint(1) NOT NULL
+  `condicion` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `asignatura`
+--
+
+INSERT INTO `asignatura` (`idasignatura`, `nombre_asignatura`, `condicion`) VALUES
+(2, 'Química Orgánica II', 1),
+(3, 'Sociología', 1),
+(4, 'Biología General', 1),
+(5, 'Técnicas de Redacción', 1),
+(6, 'Química Analítica Cuantitativa', 1),
+(7, 'Matemática II', 1),
+(8, 'Estadística', 1),
+(9, 'Análisis Bromatológico', 1),
+(10, 'Farmacia Hospitalaria II', 1),
+(11, 'Anatomía', 1),
+(12, 'CENIUES', 1),
+(13, 'Pre-Laboratorio de Biología General', 1),
+(14, 'Microbiología Aplicada IV', 1),
+(15, 'Análisis instrumental', 1);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `discusion`
+-- Table structure for table `discusion`
 --
 
 CREATE TABLE `discusion` (
   `iddiscusion` int(11) NOT NULL,
-  `idasignatura` int(11) NOT NULL,
   `actividad` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `fecha` date NOT NULL,
-  `hora` time(6) NOT NULL,
-  `semana` int(11) NOT NULL
+  `fecha_fin` date NOT NULL,
+  `semana` int(11) NOT NULL,
+  `condicion` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `discusion`
+--
+
+INSERT INTO `discusion` (`iddiscusion`, `actividad`, `fecha`, `fecha_fin`, `semana`, `condicion`) VALUES
+(2, 'Propiedades coligativas', '2017-09-28', '2017-09-01', 4, 1),
+(3, 'Termoquímica', '2017-09-11', '2017-09-15', 6, 1),
+(4, 'Cinética', '2017-09-25', '2017-11-29', 8, 1),
+(5, 'Equilibrio', '2017-10-09', '2017-10-13', 10, 1),
+(6, 'Ácidos-bases', '2017-10-06', '2017-10-10', 14, 1),
+(7, 'Redox', '2017-11-20', '2017-11-24', 16, 1);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `local`
+-- Table structure for table `local`
 --
 
 CREATE TABLE `local` (
   `idlocal` int(11) NOT NULL,
   `lugar` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `capacidad` int(11) NOT NULL,
-  `condicion` tinyint(1) NOT NULL
+  `condicion` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `local`
+-- Dumping data for table `local`
 --
 
 INSERT INTO `local` (`idlocal`, `lugar`, `capacidad`, `condicion`) VALUES
@@ -85,7 +116,7 @@ INSERT INTO `local` (`idlocal`, `lugar`, `capacidad`, `condicion`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -95,7 +126,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Volcado de datos para la tabla `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -106,7 +137,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `password_resets`
+-- Table structure for table `password_resets`
 --
 
 CREATE TABLE `password_resets` (
@@ -118,7 +149,7 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `reserva`
+-- Table structure for table `reserva`
 --
 
 CREATE TABLE `reserva` (
@@ -132,7 +163,22 @@ CREATE TABLE `reserva` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `users`
+-- Table structure for table `reserva_discu`
+--
+
+CREATE TABLE `reserva_discu` (
+  `idreserva` int(11) NOT NULL,
+  `idlocal` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `hora` time(6) NOT NULL,
+  `idasignatura` int(11) NOT NULL,
+  `iddiscusion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -147,33 +193,19 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Volcado de datos para la tabla `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'yese', 'yeseliz', 'yeseliz@gmail.com', '$2y$10$KIdB8wa6MTkmwPNQrjuPRe1UlleO2WKsf9uH1pFXI7l6MW0y.AX8C', NULL, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `reserva_discu`
---
-
-CREATE TABLE `reserva_discu` (
-  `idreserva` int(11) NOT NULL,
-  `idlocal` int(11) NOT NULL,
-  `fecha` date NOT NULL,
-  `hora` time(6) NOT NULL,
-  `iddiscusion` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
+(1, 'yese', 'yeseliz', 'yeseliz@gmail.com', '$2y$10$KIdB8wa6MTkmwPNQrjuPRe1UlleO2WKsf9uH1pFXI7l6MW0y.AX8C', 'cShwuoNYsHRtWnvbyvR76M5I9m2HDCZ3HuAUTONPTYdg67U16mzVgrzbnnFO', NULL, NULL),
+(2, 'usuario', 'user', 'user@gmail.com', '$2y$10$KIdB8wa6MTkmwPNQrjuPRe1UlleO2WKsf9uH1pFXI7l6MW0y.AX8C', NULL, NULL, NULL);
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `asignatura`
+-- Indexes for table `asignatura`
 --
 ALTER TABLE `asignatura`
   ADD PRIMARY KEY (`idasignatura`);
@@ -182,14 +214,25 @@ ALTER TABLE `asignatura`
 -- Indexes for table `discusion`
 --
 ALTER TABLE `discusion`
-  ADD PRIMARY KEY (`iddiscusion`),
-  ADD KEY `fk_asignatura_discusion_idx` (`idasignatura`);
+  ADD PRIMARY KEY (`iddiscusion`);
 
 --
 -- Indexes for table `local`
 --
 ALTER TABLE `local`
   ADD PRIMARY KEY (`idlocal`);
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
 
 --
 -- Indexes for table `reserva`
@@ -205,23 +248,11 @@ ALTER TABLE `reserva`
 ALTER TABLE `reserva_discu`
   ADD PRIMARY KEY (`idreserva`),
   ADD KEY `fk_local_reserva_discu_idx` (`idlocal`),
+  ADD KEY `fk_asignatura_reserva_discu_idx` (`idasignatura`),
   ADD KEY `fk_discusion_reserva_discu_idx` (`iddiscusion`);
 
-
 --
--- Indices de la tabla `migrations`
---
-ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `password_resets`
---
-ALTER TABLE `password_resets`
-  ADD KEY `password_resets_email_index` (`email`);
-
---
--- Indices de la tabla `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
@@ -229,24 +260,29 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
 -- AUTO_INCREMENT for table `asignatura`
 --
 ALTER TABLE `asignatura`
-  MODIFY `idasignatura` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idasignatura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `discusion`
 --
 ALTER TABLE `discusion`
-  MODIFY `iddiscusion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `iddiscusion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `local`
 --
 ALTER TABLE `local`
-  MODIFY `idlocal` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idlocal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `reserva`
 --
@@ -258,25 +294,13 @@ ALTER TABLE `reserva`
 ALTER TABLE `reserva_discu`
   MODIFY `idreserva` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT de la tabla `migrations`
---
-ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT de la tabla `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
-
-
---
--- Constraints for table `discusion`
---
-ALTER TABLE `discusion`
-  ADD CONSTRAINT `fk_asignatura_discusion` FOREIGN KEY (`idasignatura`) REFERENCES `asignatura` (`idasignatura`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `reserva`
@@ -289,6 +313,7 @@ ALTER TABLE `reserva`
 -- Constraints for table `reserva_discu`
 --
 ALTER TABLE `reserva_discu`
+  ADD CONSTRAINT `fk_asignatura_reserva_discu` FOREIGN KEY (`idasignatura`) REFERENCES `asignatura` (`idasignatura`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_discusion_reserva_discu` FOREIGN KEY (`iddiscusion`) REFERENCES `discusion` (`iddiscusion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_local_reserva_discu` FOREIGN KEY (`idlocal`) REFERENCES `local` (`idlocal`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;

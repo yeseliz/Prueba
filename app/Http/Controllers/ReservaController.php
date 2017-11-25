@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\DB;
 use tpi\Reserva;
 use Illuminate\Support\Facades\Redirect;
 use tpi\Http\Requests\ReservaFormRequest;
+use tpi\Http\Requests\LocalFormRequest;
+use tpi\Http\Requests\AsignaturaFormRequest;
+use tpi\Local;
+use tpi\Asignatura;
 
 class ReservaController extends Controller
 {
@@ -22,10 +26,12 @@ class ReservaController extends Controller
         $query=trim($request->get('searchText'));
         $reservas=DB::table('reserva as r')
         ->join('local as loc', 'r.idlocal','=','loc.idlocal')
-        ->select('r.idreserva','r.fecha', 'r.hora', 'loc.fecha', 'loc.hora', 'loc.lugar as local', 'loc.capacidad')
-        ->where('r.fecha','LIKE','%'.$query.'%')
-        ->orderBy('r.idreserva','desc')
-        ->paginate(3);
+        ->join('asignatura as as', 'r.idlocal','=','as.idlocal')
+
+        ->select('r.idreserva','r.fecha', 'r.hora','loc.lugar', 'loc.capacidad', 'as.nombre_asignatura')
+        ->where('as.nombre_asignatura','LIKE','%'.$query.'%')
+        ->orderBy('as.nombre_asignatura','asc')
+        ->paginate(6);
 
         return view('reserva.index',["reservas"=>$reservas,"searchText"=>$query]);
     }
