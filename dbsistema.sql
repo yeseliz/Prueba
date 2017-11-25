@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 25, 2017 at 10:09 AM
+-- Generation Time: Nov 25, 2017 at 08:46 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -155,10 +155,17 @@ CREATE TABLE `password_resets` (
 CREATE TABLE `reserva` (
   `idreserva` int(11) NOT NULL,
   `idlocal` int(11) NOT NULL,
-  `fecha` date NOT NULL,
+  `dia` varchar(105) COLLATE utf8_unicode_ci NOT NULL,
   `hora` time(6) DEFAULT NULL,
   `idasignatura` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `reserva`
+--
+
+INSERT INTO `reserva` (`idreserva`, `idlocal`, `dia`, `hora`, `idasignatura`) VALUES
+(3, 14, 'Martes', '07:00:00.000000', 8);
 
 -- --------------------------------------------------------
 
@@ -287,7 +294,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `idreserva` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idreserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `reserva_discu`
 --
