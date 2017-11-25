@@ -14,8 +14,6 @@
 			<table class="table table-striped table-bordered table-condensed table-hover">
 				<thead>
 				<th>Local</th>
-				<th>Fecha</th>
-				<th>Hora</th>
 				<th>Capacidad</th>
 				<th>Opciones</th>
 				</thead>
@@ -23,8 +21,6 @@
 				<tr>
 				
 				<td>{{ $lo->lugar}}</td>
-				<td>{{ $lo->fecha}}</td>
-				<td>{{ $lo->hora}}</td>
 				<td>{{ $lo->capacidad}}</td>
 				<td>
 					<a href="{{URL::action('LocalController@edit',$lo->idlocal)}}"><button class ="btn btn-success">Editar</button></a>

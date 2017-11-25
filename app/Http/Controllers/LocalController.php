@@ -27,7 +27,7 @@ class LocalController extends Controller
         $locales=DB::table('local')->where('lugar','LIKE','%'.$query.'%')
         ->where('condicion','=','1')
         ->orderBy('idlocal','desc')
-        ->paginate(3);
+        ->paginate(6);
 
         return view('local.index',["locales"=>$locales,"searchText"=>$query]);
     }
@@ -53,8 +53,6 @@ class LocalController extends Controller
     {
      $local=new local;
      $local->lugar=$request->get('lugar');
-     $local->fecha=$request->get('fecha');
-     $local->hora=$request->get('hora');
      $local->capacidad=$request->get('capacidad');
       $local->condicion='1';
      $local->save();
@@ -94,8 +92,6 @@ class LocalController extends Controller
     {
     $local=local::findOrFail($id);
     $local->lugar=$request->get('lugar');
-    $local->fecha=$request->get('fecha');
-    $local->hora=$request->get('hora');
     $local->capacidad=$request->get('capacidad');
     $local->update();
 

@@ -24,8 +24,6 @@ class LocalFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'fecha'=>'required',
-            'hora'=>'required',
             'lugar'=>'required|max:45',
             'capacidad'=>'required'
         ];

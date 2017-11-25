@@ -21,16 +21,6 @@
 		</div>
 
 		<div class="form-group">
-			<label form="fecha">Fecha</label>
-			<input type="date" name="fecha" class="form-control" value="{{$local->fecha}}" placeholder="Fecha...">
-		</div>
-
-		<div class="form-group">
-			<label form="hora">Hora</label>
-			<input type="time" name="hora" class="form-control" value="{{$local->hora}}" placeholder="Hora...">
-		</div>
-
-		<div class="form-group">
 			<label form="capacidad">Capacidad</label>
 			<input type="number" name="capacidad" class="form-control" value="{{$local->capacidad}}" placeholder="Capacidad...">
 		</div>

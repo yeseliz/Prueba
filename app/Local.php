@@ -10,8 +10,6 @@ class Local extends Model
     protected $primaryKey='idlocal';
     public $timestamps=false;
     protected $fillable=[
-    'fecha',
-    'hora',
     'lugar',
     'capacidad',
     'condicion'
