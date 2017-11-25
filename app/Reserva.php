@@ -11,8 +11,8 @@ class Reserva extends Model
     public $timestamps=false;
     protected $fillable=[
     'idlocal',
+    'idasignatura',
     'fecha',
-    'hora',
-    'idasignatura'
+    'hora'
     ];
 }

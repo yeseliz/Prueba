@@ -2,7 +2,7 @@
 @section('contenido')
 <div class="row">
 	<div class="col-lg-6 col-md-6 col-sm-6 col-sx-6">
-		<h3> Editar Reserva: {{$reserva->fecha}} </h3>
+		<h3> Editar Reserva: {{$reserva->dia}} </h3>
 		@if (count($errors)>0)
 		<div class="alert alert-danger">
 			<ul>
@@ -16,10 +16,36 @@
 		{!!Form::model($reserva,['method'=>'PATCH','route'=>['reserva.update',$reserva->idreserva]])!!}
 		{{Form::token()}}
 
+
+		<div class="col-lg-6 col-sm-6 col-md-6 col-sx-12">
 		<div class="form-group">
-			<label form="fecha">Fecha</label>
-			<input type="date" name="fecha" class="form-control" value="{{$reserva->fecha}}" placeholder="Fecha...">
+			<label>Asignatura</label>
+			<select name="idasignatura" class="form-control">
+				@foreach($asignaturas as $asig)
+				@if ($asig->idasignatura==$reserva->idreserva)
+				<option value="{{$asig->idasignatura}}" selected>{{$asig->nombre_asignatura}}</option>
+				@else
+				<option value="{{$asig->idasignatura}}">{{$asig->nombre_asignatura}}</option>
+				@endif
+				@endforeach
+			</select>
 		</div>
+	</div>
+
+	<div class="col-lg-6 col-sm-6 col-md-6 col-sx-12">
+		<div class="form-group">
+			<label form="dia">Día</label>
+	<select name="dia" class="form-control" value="{{$reserva->dia}}">
+  <option value="Lunes">Lunes</option>
+  <option value="Martes">Martes</option>
+  <option value="Miercoles">Miércoles</option>
+  <option value="Jueves">Jueves</option>
+   <option value="Viernes">Viernes</option>
+  <option value="Sabado">Sábado</option>
+  <option value="Domingo">Domingo</option>
+</select>
+	</div>
+	</div>
 
 		<div class="form-group">
 			<label form="hora">Hora</label>

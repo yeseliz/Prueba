@@ -25,7 +25,7 @@ class ReservaFormRequest extends FormRequest
     {
         return [
             'idlocal'=>'required',
-            'fecha'=>'required',
+            'dia'=>'required',
             'hora'=>'required',
             'idasignatura'=>'required'
 

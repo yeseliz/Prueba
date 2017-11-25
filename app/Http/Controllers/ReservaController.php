@@ -26,9 +26,8 @@ class ReservaController extends Controller
         $query=trim($request->get('searchText'));
         $reservas=DB::table('reserva as r')
         ->join('local as loc', 'r.idlocal','=','loc.idlocal')
-        ->join('asignatura as as', 'r.idlocal','=','as.idlocal')
-
-        ->select('r.idreserva','r.fecha', 'r.hora','loc.lugar', 'loc.capacidad', 'as.nombre_asignatura')
+        ->join('asignatura as as', 'r.idasignatura','=','as.idasignatura')
+        ->select('r.idreserva','r.dia', 'r.hora','loc.lugar', 'loc.capacidad', 'as.nombre_asignatura')
         ->where('as.nombre_asignatura','LIKE','%'.$query.'%')
         ->orderBy('as.nombre_asignatura','asc')
         ->paginate(6);
@@ -40,14 +39,16 @@ class ReservaController extends Controller
    public function create()
    {
      $locales=DB::table('local')->where('condicion','=','1')->get();
-     return view("reserva.create",["locales"=>$locales]);
+     $asignaturas=DB::table('asignatura')->where('condicion','=','1')->get();
+     return view("reserva.create",["locales"=>$locales, "asignaturas"=>$asignaturas]);
    }
 
    public function store(reservaFormRequest $request)
    {
      $reserva=new reserva;
      $reserva->idlocal=$request->get('idlocal');
-     $reserva->fecha=$request->get('fecha');
+     $reserva->idasignatura=$request->get('idasignatura');
+     $reserva->dia=$request->get('dia');
      $reserva->hora=$request->get('hora');
      $reserva->save();
      return Redirect::to('reserva');
@@ -62,14 +63,16 @@ class ReservaController extends Controller
    {
     $reserva=reserva::findOrFail($id);
     $locales=DB::table('local')->where('condicion','=','1')->get();
-    return view("reserva.edit",["reserva"=>$reserva, "locales"=>$locales]);
+    $asignaturas=DB::table('asignatura')->where('condicion','=','1')->get();
+    return view("reserva.edit",["reserva"=>$reserva, "locales"=>$locales, "asignaturas"=>$asignaturas]);
    }
 
    public function update(reservaFormRequest $request, $id)
    {
     $reserva=reserva::findOrFail($id);
      $reserva->idlocal=$request->get('idlocal');
-     $reserva->fecha=$request->get('fecha');
+     $reserva->idasignatura=$request->get('idasignatura');
+     $reserva->dia=$request->get('dia');
      $reserva->hora=$request->get('hora');
 
     $reserva->update();

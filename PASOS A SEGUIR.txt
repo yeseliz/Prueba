@@ -2,7 +2,7 @@
    PASOS
 
 1. Clonar el proyecto de git
-2. Herramientas a utilizar: mysql y xampp o wamp
+2. Herramientas a utilizar: xampp o wamp
 3. En http://localhost:81/phpmyadmin crear una nueva base de datos y nombrarla como
    dbsistema, tipo de codificación: utf8_unicode_ci.
 4. Importar a la base que se acaba de crear, el script que está en este proyecto con 
@@ -14,4 +14,4 @@
 8. En el login las credenciales son: 
     carnet: user
     contraseña: 1234
-8. Listo...
+9. Listo...
