@@ -27,4 +27,12 @@ class AsignaturaFormRequest extends FormRequest
             'nombre_asignatura'=>'required|max:45'
         ];
     }
+
+    public function messages()
+{
+     return [
+     'nombre_asignatura.required' => 'Debe ingresar el nombre de la asignatura',
+
+     ];
+   }
 }

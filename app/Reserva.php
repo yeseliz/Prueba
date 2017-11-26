@@ -12,7 +12,21 @@ class Reserva extends Model
     protected $fillable=[
     'idlocal',
     'idasignatura',
+    'iddiscusion',
     'fecha',
     'hora'
     ];
+
+/*
+    public function local(){
+    	return $this=>belongsTo('Local');
+    }
+
+    public function asignatura(){
+    	return $this=>belongsTo('Asignatura');
+    }
+
+    public function discusion(){
+    	return $this=>belongsTo('Discusion');
+    }*/
 }

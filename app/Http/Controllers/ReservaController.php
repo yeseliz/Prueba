@@ -56,7 +56,12 @@ class ReservaController extends Controller
 
    public function show($id)
    {
-    return view("reserva.show",["reserva"=>reserva::findOrFail($id)]);
+    //return view("reserva.show",["reserva"=>reserva::findOrFail($id)]);
+    $reserva=reserva::findOrFail($id);
+    $view=view('reserva.show', compact('reserva'));
+    $pdf=\App::make('dompdf.wrapper');
+    return $pdf->stream('reserva');
+
    }
 
    public function edit($id)

@@ -26,11 +26,11 @@
 				<td>{{ $r->hora}}</td>
 				<td>{{ $r->lugar}}</td>
 				<td>
+				    <a href="{{URL::action('ReservaController@show',$r->idreserva)}}"><button class ="btn btn-success">Ver</button></a>
 					<a href="{{URL::action('ReservaController@edit',$r->idreserva)}}"><button class ="btn btn-success">Editar</button></a>
 					<a href="" data-target="#modal-delete-{{$r->idreserva}}" data-toggle="modal"><button class ="btn btn-success"> Eliminar</button></a>
-
 				</td>
-  
+				
 				</tr>
 				@include('reserva.modal')
 				@endforeach

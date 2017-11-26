@@ -13,7 +13,8 @@
 		<div class="table-responsive">
 			<table class="table table-striped table-bordered table-condensed table-hover">
 				<thead>
-				<th>Carnet</th>
+				<th>Nombre</th>
+                <th>Carnet</th>
 				<th>Email</th>
 				<th>Opciones</th>
 				</thead>
@@ -21,6 +22,7 @@
 				<tr>
 				
 				<td>{{ $usu->name}}</td>
+				<td>{{ $usu->username}}</td>
 				<td>{{ $usu->email}}</td>
 				<td>
 					<!--<a href="{{URL::action('UsuarioController@edit',$usu->id)}}"><button class ="btn btn-success">Editar</button></a>-->
