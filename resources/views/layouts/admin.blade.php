@@ -129,11 +129,11 @@
 
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-folder"></i> <span>Reserva de Discusiones</span>
+                <i class="fa fa-folder"></i> <span>Discusiones Programadas</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="{{url('reserva')}}"><i class="fa fa-circle-o"></i>Gestión de Reservas</a></li>
+                <li><a href="{{url('reservaDiscusion')}}"><i class="fa fa-circle-o"></i>Gestión de Discusiones</a></li>
               </ul>
             </li>
 

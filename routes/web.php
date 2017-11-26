@@ -33,6 +33,7 @@ Route::resource('seguridad/usuario','UsuarioController');
 Route::resource('local','LocalController');
 
 Route::resource('asignatura','AsignaturaController');
+Route::resource('reservaDiscusion','ReservaDiscusionController');
 
 Route::resource('reserva','ReservaController');
 Route::auth();
