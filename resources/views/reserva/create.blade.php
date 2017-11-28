@@ -23,6 +23,8 @@
  <select name="idasignatura" class="form-control">
  @foreach($asignaturas as $asig)
  <option value="{{$asig->idasignatura}}">{{$asig->nombre_asignatura}}</option>
+ <option value="{{$asig->idasignatura}}" disabled="true">{{$asig->tipo}}</option>
+ <option value="" disabled="disabled">──────────────────────────────────────────────────────</option>
  @endforeach
  </select>
 </div>

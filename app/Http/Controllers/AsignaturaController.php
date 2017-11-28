@@ -43,6 +43,7 @@ class AsignaturaController extends Controller
    {
      $asignatura=new asignatura;
      $asignatura->nombre_asignatura=$request->get('nombre_asignatura');
+     $asignatura->tipo=$request->get('tipo');
      $asignatura->condicion='1';
      $asignatura->save();
      return Redirect::to('asignatura');
@@ -65,6 +66,7 @@ class AsignaturaController extends Controller
    {
     $asignatura=Asignatura::findOrFail($id);
     $asignatura->nombre_asignatura=$request->get('nombre_asignatura');
+    $asignatura->tipo=$request->get('tipo');
 
     $asignatura->update();
 

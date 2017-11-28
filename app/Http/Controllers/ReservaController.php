@@ -27,7 +27,7 @@ class ReservaController extends Controller
         $reservas=DB::table('reserva as r')
         ->join('local as loc', 'r.idlocal','=','loc.idlocal')
         ->join('asignatura as as', 'r.idasignatura','=','as.idasignatura')
-        ->select('r.idreserva','r.dia', 'r.hora','loc.lugar', 'loc.capacidad', 'as.nombre_asignatura')
+        ->select('r.idreserva','r.dia', 'r.hora','loc.lugar', 'loc.capacidad', 'as.nombre_asignatura', 'as.tipo')
         ->where('as.nombre_asignatura','LIKE','%'.$query.'%')
         ->orderBy('as.nombre_asignatura','asc')
         ->paginate(6);
@@ -92,4 +92,9 @@ class ReservaController extends Controller
      return Redirect::to('reserva');
 
    }
+
+   public function mostrar()
+    {
+        return view("reserva.grafico");
+    }
 }

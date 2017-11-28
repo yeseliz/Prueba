@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 25, 2017 at 08:46 PM
+-- Generation Time: Nov 28, 2017 at 05:55 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -31,6 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `asignatura` (
   `idasignatura` int(11) NOT NULL,
   `nombre_asignatura` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `tipo` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
   `condicion` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -38,21 +39,21 @@ CREATE TABLE `asignatura` (
 -- Dumping data for table `asignatura`
 --
 
-INSERT INTO `asignatura` (`idasignatura`, `nombre_asignatura`, `condicion`) VALUES
-(2, 'Química Orgánica II', 1),
-(3, 'Sociología', 1),
-(4, 'Biología General', 1),
-(5, 'Técnicas de Redacción', 1),
-(6, 'Química Analítica Cuantitativa', 1),
-(7, 'Matemática II', 1),
-(8, 'Estadística', 1),
-(9, 'Análisis Bromatológico', 1),
-(10, 'Farmacia Hospitalaria II', 1),
-(11, 'Anatomía', 1),
-(12, 'CENIUES', 1),
-(13, 'Pre-Laboratorio de Biología General', 1),
-(14, 'Microbiología Aplicada IV', 1),
-(15, 'Análisis instrumental', 1);
+INSERT INTO `asignatura` (`idasignatura`, `nombre_asignatura`, `tipo`, `condicion`) VALUES
+(2, 'Química Orgánica II', '', 1),
+(3, 'Sociología', '', 1),
+(4, 'Biología General', '', 1),
+(5, 'Técnicas de Redacción', '', 1),
+(6, 'Química Analítica Cuantitativa', '', 1),
+(7, 'Matemática II', '', 1),
+(8, 'Estadística', '', 1),
+(9, 'Análisis Bromatológico', 'Teórico', 1),
+(10, 'Farmacia Hospitalaria II', '', 1),
+(11, 'Anatomía', '', 1),
+(12, 'CENIUES', '', 1),
+(13, 'Pre-Laboratorio de Biología General', '', 1),
+(14, 'Microbiología Aplicada IV', '', 1),
+(15, 'Análisis instrumental', 'Teórico', 1);
 
 -- --------------------------------------------------------
 
@@ -165,7 +166,10 @@ CREATE TABLE `reserva` (
 --
 
 INSERT INTO `reserva` (`idreserva`, `idlocal`, `dia`, `hora`, `idasignatura`) VALUES
-(3, 14, 'Martes', '07:00:00.000000', 8);
+(3, 14, 'Martes', '07:00:00.000000', 8),
+(4, 8, 'Lunes', '05:23:00.000000', 3),
+(5, 8, 'Lunes', '04:08:00.000000', 9),
+(6, 16, 'Miercoles', '05:06:00.000000', 9);
 
 -- --------------------------------------------------------
 
@@ -181,6 +185,13 @@ CREATE TABLE `reserva_discu` (
   `idasignatura` int(11) NOT NULL,
   `iddiscusion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `reserva_discu`
+--
+
+INSERT INTO `reserva_discu` (`idreserva`, `idlocal`, `fecha`, `hora`, `idasignatura`, `iddiscusion`) VALUES
+(2, 19, '2017-11-04', '04:34:00.000000', 3, 4);
 
 -- --------------------------------------------------------
 
@@ -204,8 +215,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'yese', 'yeseliz', 'yeseliz@gmail.com', '$2y$10$KIdB8wa6MTkmwPNQrjuPRe1UlleO2WKsf9uH1pFXI7l6MW0y.AX8C', 'cShwuoNYsHRtWnvbyvR76M5I9m2HDCZ3HuAUTONPTYdg67U16mzVgrzbnnFO', NULL, NULL),
-(2, 'usuario', 'user', 'user@gmail.com', '$2y$10$KIdB8wa6MTkmwPNQrjuPRe1UlleO2WKsf9uH1pFXI7l6MW0y.AX8C', NULL, NULL, NULL);
+(1, 'yese', 'yeseliz', 'yeseliz@gmail.com', '$2y$10$KIdB8wa6MTkmwPNQrjuPRe1UlleO2WKsf9uH1pFXI7l6MW0y.AX8C', 'MLLWW8NUUSU1ZorTWggGOEOeDl1Q2HyvUduAOx5lysgVN97xLuiEJCzLBwBx', NULL, NULL),
+(2, 'usuario', 'user', 'user@gmail.com', '$2y$10$KIdB8wa6MTkmwPNQrjuPRe1UlleO2WKsf9uH1pFXI7l6MW0y.AX8C', '38apoCWVJz5wMmxVYKbBOy7uJyoLFY1rGVhzRHq5PHuKab3JbKhpm7XWjkNk', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -274,7 +285,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `asignatura`
 --
 ALTER TABLE `asignatura`
-  MODIFY `idasignatura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `idasignatura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `discusion`
 --
@@ -294,12 +305,12 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `idreserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idreserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `reserva_discu`
 --
 ALTER TABLE `reserva_discu`
-  MODIFY `idreserva` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idreserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `users`
 --
@@ -320,9 +331,9 @@ ALTER TABLE `reserva`
 -- Constraints for table `reserva_discu`
 --
 ALTER TABLE `reserva_discu`
-  ADD CONSTRAINT `fk_asignatura_reserva_discu` FOREIGN KEY (`idasignatura`) REFERENCES `asignatura` (`idasignatura`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_discusion_reserva_discu` FOREIGN KEY (`iddiscusion`) REFERENCES `discusion` (`iddiscusion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_local_reserva_discu` FOREIGN KEY (`idlocal`) REFERENCES `local` (`idlocal`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_asignatura_reserva_discu` FOREIGN KEY (`idasignatura`) REFERENCES `asignatura` (`idasignatura`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_discusion_reserva_discu` FOREIGN KEY (`iddiscusion`) REFERENCES `discusion` (`iddiscusion`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_local_reserva_discu` FOREIGN KEY (`idlocal`) REFERENCES `local` (`idlocal`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

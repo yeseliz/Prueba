@@ -24,7 +24,8 @@ class AsignaturaFormRequest extends FormRequest
     public function rules()
     {
             return [
-            'nombre_asignatura'=>'required|max:45'
+            'nombre_asignatura'=>'required|max:45',
+            'tipo'=>'required|max:45'
         ];
     }
 

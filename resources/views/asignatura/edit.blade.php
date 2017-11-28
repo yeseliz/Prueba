@@ -25,6 +25,18 @@
 		</div>
 	</div>
 
+	<div class="col-lg-6 col-sm-6 col-md-6 col-sx-12">
+		<div class="form-group">
+			<label form="tipo">Tipo</label>
+	<select name="tipo" class="form-control" value="{{$asignatura->tipo}}">
+  <option value="Teórico">Teórico</option>
+  <option value="Discusión">Discusión</option>
+  <option value="Laboratorio">Laboratorio</option>
+  <option value="Pre-Laboratorio">Pre-Laboratorio</option>
+</select>
+	</div>
+	</div>
+
 	
 	<div class="col-lg-6 col-sm-6 col-md-6 col-sx-12">
 		<div class="form-group">

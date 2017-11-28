@@ -14,12 +14,13 @@
 			<table class="table table-striped table-bordered table-condensed table-hover">
 				<thead>
 				<th>Asignatura</th>
+				<th>Tipo </th>
 				<th>Opciones</th>
 				</thead>
 				@foreach ($asignaturas as $a)
 				<tr>
 				<td>{{ $a->nombre_asignatura}}</td>
-			
+			    <th>{{ $a->tipo}}</th>
 				<td>
 					<a href="{{URL::action('AsignaturaController@edit',$a->idasignatura)}}"><button class ="btn btn-success">Editar</button></a>
 					<a href="" data-target="#modal-delete-{{$a->idasignatura}}" data-toggle="modal"><button class ="btn btn-success"> Eliminar</button></a>

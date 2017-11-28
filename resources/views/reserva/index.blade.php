@@ -14,6 +14,7 @@
 			<table class="table table-striped table-bordered table-condensed table-hover">
 				<thead>
 				<th>Asignatura</th>
+				<th>Tipo</th>
 				<th>Día</th>
 				<th>Hora</th>
 				<th>Local</th>
@@ -21,7 +22,8 @@
 				</thead>
 				@foreach ($reservas as $r)
 				<tr>
-				<td>{{ $r->nombre_asignatura}}
+				<td>{{ $r->nombre_asignatura}}</td>
+				<td>{{ $r->tipo}}</td>
 				<td>{{ $r->dia}}</td>
 				<td>{{ $r->hora}}</td>
 				<td>{{ $r->lugar}}</td>

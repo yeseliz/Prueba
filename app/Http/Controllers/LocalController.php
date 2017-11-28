@@ -112,4 +112,6 @@ class LocalController extends Controller
      return Redirect::to('local');
 
     }
+
+    
 }

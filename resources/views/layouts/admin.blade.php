@@ -98,7 +98,7 @@
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-pencil-square-o"></i>
-                <span>Discusiones</span>
+                <span>Discusiones Programadas</span>
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
@@ -129,7 +129,7 @@
 
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-folder"></i> <span>Discusiones Programadas</span>
+                <i class="fa fa-folder"></i> <span>Reserva de Discusiones </span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
@@ -147,6 +147,18 @@
                 
               </ul>
             </li>
+           
+             <li class="treeview">
+              <a href="#">
+                <i class="fa fa-bar-chart"></i> <span>Estadísticas</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{url('reserva/grafico')}}"><i class="fa fa-circle-o"></i>Gráfico de Barras</a></li>
+                
+              </ul>
+            </li>
+
              <li>
               <a href="#">
                 <i class="fa fa-plus-square"></i> <span>Comprobante de Reserva</span>
@@ -222,6 +234,10 @@
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
     <!-- AdminLTE App -->
     <script src="{{asset('js/app.min.js')}}"></script>
+
+
+<script src="{{ asset('reportes/code/highcharts.js')}}"></script>
+<script src="{{ asset('reportes/code/modules/exporting.js')}}"></script>
     
   </body>
 </html>
