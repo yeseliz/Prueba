@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 28, 2017 at 05:55 PM
+-- Generation Time: Nov 29, 2017 at 08:17 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -40,20 +40,21 @@ CREATE TABLE `asignatura` (
 --
 
 INSERT INTO `asignatura` (`idasignatura`, `nombre_asignatura`, `tipo`, `condicion`) VALUES
-(2, 'Química Orgánica II', '', 1),
-(3, 'Sociología', '', 1),
-(4, 'Biología General', '', 1),
-(5, 'Técnicas de Redacción', '', 1),
-(6, 'Química Analítica Cuantitativa', '', 1),
-(7, 'Matemática II', '', 1),
-(8, 'Estadística', '', 1),
-(9, 'Análisis Bromatológico', 'Teórico', 1),
-(10, 'Farmacia Hospitalaria II', '', 1),
-(11, 'Anatomía', '', 1),
-(12, 'CENIUES', '', 1),
-(13, 'Pre-Laboratorio de Biología General', '', 1),
-(14, 'Microbiología Aplicada IV', '', 1),
-(15, 'Análisis instrumental', 'Teórico', 1);
+(2, 'Química Orgánica II', 'Teórico', 1),
+(3, 'Sociología', 'Teórico', 1),
+(4, 'Biología General', 'Teórico', 1),
+(5, 'Técnicas de Redacción', 'Discusión', 1),
+(6, 'Química Analítica Cuantitativa', 'Teórico', 1),
+(7, 'Matemática II', 'Teórico', 1),
+(8, 'Estadística', 'Teórico', 1),
+(9, 'Análisis Bromatológico', 'Discusión', 1),
+(10, 'Farmacia Hospitalaria II', 'Teórico', 1),
+(11, 'Anatomía', 'Teórico', 1),
+(12, 'CENIUES', 'Teórico', 1),
+(13, 'Biología General', 'Pre-Laboratorio', 1),
+(14, 'Microbiología Aplicada IV', 'Teórico', 1),
+(15, 'Análisis instrumental', 'Teórico', 1),
+(16, 'Matemática II', 'Discusión', 1);
 
 -- --------------------------------------------------------
 
@@ -81,6 +82,35 @@ INSERT INTO `discusion` (`iddiscusion`, `actividad`, `fecha`, `fecha_fin`, `sema
 (5, 'Equilibrio', '2017-10-09', '2017-10-13', 10, 1),
 (6, 'Ácidos-bases', '2017-10-06', '2017-10-10', 14, 1),
 (7, 'Redox', '2017-11-20', '2017-11-24', 16, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hora`
+--
+
+CREATE TABLE `hora` (
+  `idhora` int(11) NOT NULL,
+  `horario` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `condicion` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `hora`
+--
+
+INSERT INTO `hora` (`idhora`, `horario`, `condicion`) VALUES
+(1, '7:00-8:00 am', 1),
+(2, '8:00-9:00 am', 1),
+(3, '9:00-10:00 am', 1),
+(4, '10:00-11:00 am', 1),
+(5, '11:00-12:00 pm', 1),
+(6, '12:00-01:00 pm', 1),
+(7, '01:00-02:00 pm', 1),
+(8, '02:00-03:00 pm', 1),
+(9, '03:00-04:00 pm', 1),
+(10, '04:00-05:00 pm', 1),
+(11, '05:00-06:00 pm', 1);
 
 -- --------------------------------------------------------
 
@@ -156,20 +186,17 @@ CREATE TABLE `password_resets` (
 CREATE TABLE `reserva` (
   `idreserva` int(11) NOT NULL,
   `idlocal` int(11) NOT NULL,
-  `dia` varchar(105) COLLATE utf8_unicode_ci NOT NULL,
-  `hora` time(6) DEFAULT NULL,
-  `idasignatura` int(11) NOT NULL
+  `fecha` date NOT NULL,
+  `idasignatura` int(11) NOT NULL,
+  `idhora` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `reserva`
 --
 
-INSERT INTO `reserva` (`idreserva`, `idlocal`, `dia`, `hora`, `idasignatura`) VALUES
-(3, 14, 'Martes', '07:00:00.000000', 8),
-(4, 8, 'Lunes', '05:23:00.000000', 3),
-(5, 8, 'Lunes', '04:08:00.000000', 9),
-(6, 16, 'Miercoles', '05:06:00.000000', 9);
+INSERT INTO `reserva` (`idreserva`, `idlocal`, `fecha`, `idasignatura`, `idhora`) VALUES
+(9, 8, '2017-11-06', 2, 3);
 
 -- --------------------------------------------------------
 
@@ -181,17 +208,17 @@ CREATE TABLE `reserva_discu` (
   `idreserva` int(11) NOT NULL,
   `idlocal` int(11) NOT NULL,
   `fecha` date NOT NULL,
-  `hora` time(6) NOT NULL,
   `idasignatura` int(11) NOT NULL,
-  `iddiscusion` int(11) NOT NULL
+  `iddiscusion` int(11) NOT NULL,
+  `idhora` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `reserva_discu`
 --
 
-INSERT INTO `reserva_discu` (`idreserva`, `idlocal`, `fecha`, `hora`, `idasignatura`, `iddiscusion`) VALUES
-(2, 19, '2017-11-04', '04:34:00.000000', 3, 4);
+INSERT INTO `reserva_discu` (`idreserva`, `idlocal`, `fecha`, `idasignatura`, `iddiscusion`, `idhora`) VALUES
+(4, 18, '2017-05-06', 2, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -235,6 +262,12 @@ ALTER TABLE `discusion`
   ADD PRIMARY KEY (`iddiscusion`);
 
 --
+-- Indexes for table `hora`
+--
+ALTER TABLE `hora`
+  ADD PRIMARY KEY (`idhora`);
+
+--
 -- Indexes for table `local`
 --
 ALTER TABLE `local`
@@ -258,7 +291,8 @@ ALTER TABLE `password_resets`
 ALTER TABLE `reserva`
   ADD PRIMARY KEY (`idreserva`),
   ADD KEY `fk_local_reserva_idx` (`idlocal`),
-  ADD KEY `fk_asignatura_reserva_idx` (`idasignatura`);
+  ADD KEY `fk_asignatura_reserva_idx` (`idasignatura`),
+  ADD KEY `fk_hora_reserva_idx` (`idhora`);
 
 --
 -- Indexes for table `reserva_discu`
@@ -267,7 +301,8 @@ ALTER TABLE `reserva_discu`
   ADD PRIMARY KEY (`idreserva`),
   ADD KEY `fk_local_reserva_discu_idx` (`idlocal`),
   ADD KEY `fk_asignatura_reserva_discu_idx` (`idasignatura`),
-  ADD KEY `fk_discusion_reserva_discu_idx` (`iddiscusion`);
+  ADD KEY `fk_discusion_reserva_discu_idx` (`iddiscusion`),
+  ADD KEY `fk_hora_reserva_discu_idx` (`idhora`);
 
 --
 -- Indexes for table `users`
@@ -292,6 +327,11 @@ ALTER TABLE `asignatura`
 ALTER TABLE `discusion`
   MODIFY `iddiscusion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
+-- AUTO_INCREMENT for table `hora`
+--
+ALTER TABLE `hora`
+  MODIFY `idhora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
 -- AUTO_INCREMENT for table `local`
 --
 ALTER TABLE `local`
@@ -305,12 +345,12 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `idreserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idreserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `reserva_discu`
 --
 ALTER TABLE `reserva_discu`
-  MODIFY `idreserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idreserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `users`
 --
@@ -324,8 +364,9 @@ ALTER TABLE `users`
 -- Constraints for table `reserva`
 --
 ALTER TABLE `reserva`
-  ADD CONSTRAINT `fk_asignatura_reserva` FOREIGN KEY (`idasignatura`) REFERENCES `asignatura` (`idasignatura`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_local_reserva` FOREIGN KEY (`idlocal`) REFERENCES `local` (`idlocal`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_asignatura_reserva` FOREIGN KEY (`idasignatura`) REFERENCES `asignatura` (`idasignatura`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_hora_reserva` FOREIGN KEY (`idhora`) REFERENCES `hora` (`idhora`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_local_reserva` FOREIGN KEY (`idlocal`) REFERENCES `local` (`idlocal`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `reserva_discu`
@@ -333,6 +374,7 @@ ALTER TABLE `reserva`
 ALTER TABLE `reserva_discu`
   ADD CONSTRAINT `fk_asignatura_reserva_discu` FOREIGN KEY (`idasignatura`) REFERENCES `asignatura` (`idasignatura`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_discusion_reserva_discu` FOREIGN KEY (`iddiscusion`) REFERENCES `discusion` (`iddiscusion`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_hora_reserva_discu` FOREIGN KEY (`idhora`) REFERENCES `hora` (`idhora`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_local_reserva_discu` FOREIGN KEY (`idlocal`) REFERENCES `local` (`idlocal`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
