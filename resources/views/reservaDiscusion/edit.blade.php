@@ -40,10 +40,18 @@
 
 <div class="col-lg-6 col-sm-6 col-md-6 col-sx-12">
 		<div class="form-group">
-			<label form="hora">Hora: </label>
-			<input type="time" name="hora" class="form-control" value="{{$reserva->hora}}" placeholder="Hora...">
+			<label>Horario: </label>
+			<select name="idhora" class="form-control">
+				@foreach($horas as $hr)
+				@if ($hr->idhora==$reserva->idreserva)
+				<option value="{{$hr->idhora}}" selected>{{$hr->horario}}</option>
+				@else
+				<option value="{{$hr->idhora}}">{{$hr->horario}}</option>
+				@endif
+				@endforeach
+			</select>
 		</div>
-		</div>
+	</div>
 
 		<div class="col-lg-6 col-sm-6 col-md-6 col-sx-12">
 		<div class="form-group">

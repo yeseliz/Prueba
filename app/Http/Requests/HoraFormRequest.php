@@ -4,7 +4,7 @@ namespace tpi\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ReservaDiscusionFormRequest extends FormRequest
+class HoraFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,7 @@ class ReservaDiscusionFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'fecha'=>'required'
-            
+            'horario'=>'required'
         ];
     }
 }

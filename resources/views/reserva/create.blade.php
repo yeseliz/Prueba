@@ -33,26 +33,22 @@
 
 
 <div class="col-lg-6 col-sm-6 col-md-6 col-sx-12">
-<div class="form-group">
-<label form="dia">Día</label>
-<br>
-<select name="dia" class="form-control">
-  <option value="Lunes">Lunes</option>
-  <option value="Martes">Martes</option>
-  <option value="Miercoles">Miércoles</option>
-  <option value="Jueves">Jueves</option>
-   <option value="Viernes">Viernes</option>
-  <option value="Sabado">Sábado</option>
-  <option value="Domingo">Domingo</option>
-</select>
+	<div class="form-group">
+		<label form="fecha">Fecha: </label>
+		<input type="date" name="fecha" required value="{{old('fecha')}}" class="form-control" placeholder="fecha...">
 	</div>
 </div>
 
 <div class="col-lg-6 col-sm-6 col-md-6 col-sx-12">
-	<div class="form-group">
-		<label form="hora">Hora</label>
-		<input type="time" name="hora" required value="{{old('hora')}}" class="form-control" placeholder="hora...">
-	</div>
+ <div class="form-group">
+ <label>Horario: </label>
+ <select name="idhora" class="form-control">
+ @foreach($horas as $h)
+ <option value="{{$h->idhora}}">{{$h->horario}}</option>
+ @endforeach
+
+ </select>
+</div>
 </div>
 
 <div class="col-lg-6 col-sm-6 col-md-6 col-sx-12">
@@ -62,6 +58,7 @@
  @foreach($locales as $lo)
  <option value="{{$lo->idlocal}}">{{$lo->lugar}}</option>
  @endforeach
+
  </select>
 </div>
 </div>

@@ -15,8 +15,8 @@
 				<thead>
 				<th>Asignatura</th>
 				<th>Tipo</th>
-				<th>Día</th>
-				<th>Hora</th>
+				<th>Fecha</th>
+				<th>Horario</th>
 				<th>Local</th>
 				<th>Opciones</th>
 				</thead>
@@ -24,8 +24,8 @@
 				<tr>
 				<td>{{ $r->nombre_asignatura}}</td>
 				<td>{{ $r->tipo}}</td>
-				<td>{{ $r->dia}}</td>
-				<td>{{ $r->hora}}</td>
+				<td>{{ $r->fecha}}</td>
+				<td>{{ $r->horario}}</td>
 				<td>{{ $r->lugar}}</td>
 				<td>
 				    <a href="{{URL::action('ReservaController@show',$r->idreserva)}}"><button class ="btn btn-success">Ver</button></a>

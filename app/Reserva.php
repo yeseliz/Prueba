@@ -13,8 +13,9 @@ class Reserva extends Model
     'idlocal',
     'idasignatura',
     'iddiscusion',
-    'fecha',
-    'hora'
+    'idhora',
+    'fecha'
+    
     ];
 
 /*

@@ -41,10 +41,14 @@
 
 
 <div class="col-lg-6 col-sm-6 col-md-6 col-sx-12">
-	<div class="form-group">
-		<label form="hora">Hora: </label>
-		<input type="time" name="hora" required value="{{old('hora')}}" class="form-control" placeholder="hora...">
-	</div>
+ <div class="form-group">
+ <label>Horario: </label>
+ <select name="idhora" class="form-control">
+ @foreach($horas as $hr)
+ <option value="{{$hr->idhora}}">{{$hr->horario}}</option>
+ @endforeach
+ </select>
+</div>
 </div>
 
 <div class="col-lg-6 col-sm-6 col-md-6 col-sx-12">

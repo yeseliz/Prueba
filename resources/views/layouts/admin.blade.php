@@ -94,6 +94,17 @@
                 <li><a href="{{url('asignatura')}}"><i class="fa fa-circle-o"></i>Gestión de Asignaturas</a></li>
               </ul>
             </li>
+
+             <li class="treeview">
+              <a href="#">
+                <i class="fa fa-calendar"></i>
+                <span>Horarios</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{url('hora')}}"><i class="fa fa-circle-o"></i>Gestión de Horarios</a></li>
+              </ul>
+            </li>
             
             <li class="treeview">
               <a href="#">

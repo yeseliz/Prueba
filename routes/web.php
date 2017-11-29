@@ -31,6 +31,7 @@ Route::resource('discusion','DiscusionController');
 Route::resource('seguridad/usuario','UsuarioController');
 //Route::resource('seguridad/usuario/{id}','UsuarioController');
 Route::resource('local','LocalController');
+Route::resource('hora','HoraController');
 
 Route::resource('asignatura','AsignaturaController');
 Route::resource('reservaDiscusion','ReservaDiscusionController');

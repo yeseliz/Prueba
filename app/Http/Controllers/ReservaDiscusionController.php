@@ -5,6 +5,7 @@ namespace tpi\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use tpi\reservaDiscusion;
+use tpi\Hora;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 use tpi\Http\Requests\ReservaDiscusionFormRequest;
@@ -31,7 +32,8 @@ class ReservaDiscusionController extends Controller
         ->join('local as l', 're.idlocal','=','l.idlocal')
         ->join('asignatura as as', 're.idasignatura','=','as.idasignatura')
         ->join('discusion as d', 're.iddiscusion','=','d.iddiscusion')
-        ->select('re.idreserva','re.fecha', 're.hora','l.lugar', 'l.capacidad', 'as.nombre_asignatura', 'd.actividad', 'd.fecha', 'd.fecha_fin', 'd.semana')
+        ->join('hora as hr', 're.idhora','=','hr.idhora')
+        ->select('re.idreserva','re.fecha','l.lugar', 'l.capacidad', 'as.nombre_asignatura', 'd.actividad', 'd.semana', 'hr.horario')
         ->where('as.nombre_asignatura','LIKE','%'.$query.'%')
         ->orderBy('as.nombre_asignatura','asc')
         ->paginate(6);
@@ -50,7 +52,8 @@ class ReservaDiscusionController extends Controller
      $discusiones=DB::table('discusion')->where('condicion','=','1')->get();
      $locales=DB::table('local')->where('condicion','=','1')->get();
      $asignaturas=DB::table('asignatura')->where('condicion','=','1')->get();
-     return view("reservaDiscusion.create",["discusiones"=>$discusiones, "locales"=>$locales, "asignaturas"=>$asignaturas]);
+     $horas=DB::table('hora')->where('condicion','=','1')->get();
+     return view("reservaDiscusion.create",["discusiones"=>$discusiones, "locales"=>$locales, "asignaturas"=>$asignaturas, "horas"=>$horas]);
     }
 
     /**
@@ -66,7 +69,7 @@ class ReservaDiscusionController extends Controller
      $reserva->idasignatura=$request->get('idasignatura');
      $reserva->iddiscusion=$request->get('iddiscusion');
      $reserva->fecha=$request->get('fecha');
-     $reserva->hora=$request->get('hora');
+     $reserva->idhora=$request->get('idhora');
      $reserva->save();
      return Redirect::to('reservaDiscusion');
     }
@@ -104,7 +107,7 @@ class ReservaDiscusionController extends Controller
      $reserva->idasignatura=$request->get('idasignatura');
      $reserva->iddiscusion=$request->get('iddiscusion');
      $reserva->fecha=$request->get('fecha');
-     $reserva->hora=$request->get('hora');
+     $reserva->idhora=$request->get('idhora');
 
     $reserva->update();
 

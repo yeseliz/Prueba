@@ -1,7 +1,7 @@
 <?php
 
 namespace tpi\Http\Controllers;
-
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use tpi\Reserva;
@@ -11,6 +11,7 @@ use tpi\Http\Requests\LocalFormRequest;
 use tpi\Http\Requests\AsignaturaFormRequest;
 use tpi\Local;
 use tpi\Asignatura;
+use tpi\Hora;
 
 class ReservaController extends Controller
 {
@@ -27,7 +28,8 @@ class ReservaController extends Controller
         $reservas=DB::table('reserva as r')
         ->join('local as loc', 'r.idlocal','=','loc.idlocal')
         ->join('asignatura as as', 'r.idasignatura','=','as.idasignatura')
-        ->select('r.idreserva','r.dia', 'r.hora','loc.lugar', 'loc.capacidad', 'as.nombre_asignatura', 'as.tipo')
+        ->join('hora as h', 'r.idhora','=','h.idhora')
+        ->select('r.idreserva','r.fecha','loc.lugar', 'loc.capacidad', 'as.nombre_asignatura', 'as.tipo', 'h.horario')
         ->where('as.nombre_asignatura','LIKE','%'.$query.'%')
         ->orderBy('as.nombre_asignatura','asc')
         ->paginate(6);
@@ -40,7 +42,8 @@ class ReservaController extends Controller
    {
      $locales=DB::table('local')->where('condicion','=','1')->get();
      $asignaturas=DB::table('asignatura')->where('condicion','=','1')->get();
-     return view("reserva.create",["locales"=>$locales, "asignaturas"=>$asignaturas]);
+     $horas=DB::table('hora')->where('condicion','=','1')->get();
+     return view("reserva.create",["locales"=>$locales, "asignaturas"=>$asignaturas, "horas"=>$horas]);
    }
 
    public function store(reservaFormRequest $request)
@@ -48,8 +51,9 @@ class ReservaController extends Controller
      $reserva=new reserva;
      $reserva->idlocal=$request->get('idlocal');
      $reserva->idasignatura=$request->get('idasignatura');
-     $reserva->dia=$request->get('dia');
-     $reserva->hora=$request->get('hora');
+     $reserva->fecha=$request->get('fecha');
+     $reserva->idhora=$request->get('idhora');
+
      $reserva->save();
      return Redirect::to('reserva');
    }
@@ -69,7 +73,8 @@ class ReservaController extends Controller
     $reserva=reserva::findOrFail($id);
     $locales=DB::table('local')->where('condicion','=','1')->get();
     $asignaturas=DB::table('asignatura')->where('condicion','=','1')->get();
-    return view("reserva.edit",["reserva"=>$reserva, "locales"=>$locales, "asignaturas"=>$asignaturas]);
+    $horas=DB::table('hora')->where('condicion','=','1')->get();
+    return view("reserva.edit",["reserva"=>$reserva, "locales"=>$locales, "asignaturas"=>$asignaturas, "horas"=>$horas]);
    }
 
    public function update(reservaFormRequest $request, $id)
@@ -77,8 +82,9 @@ class ReservaController extends Controller
     $reserva=reserva::findOrFail($id);
      $reserva->idlocal=$request->get('idlocal');
      $reserva->idasignatura=$request->get('idasignatura');
-     $reserva->dia=$request->get('dia');
-     $reserva->hora=$request->get('hora');
+     $reserva->idhora=$request->get('idhora');
+     $reserva->fecha=$request->get('fecha');
+     
 
     $reserva->update();
 

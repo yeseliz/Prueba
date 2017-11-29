@@ -15,7 +15,7 @@
 				<thead>
 				<th>Asignatura</th>
 				<th>Discusión</th>
-				<th>Hora</th>
+				<th>Horario</th>
 				<th>Fecha</th>
 				<th>Local</th>
 				<th>Opciones</th>
@@ -24,7 +24,7 @@
 				<tr>
 				<td>{{ $re->nombre_asignatura}}</td>
 				<td>{{ $re->actividad}}</td>
-				<td>{{ $re->hora}}</td>
+				<td>{{ $re->horario}}</td>
 				<td>{{ $re->fecha}}</td>
 				<td>{{ $re->lugar}}</td>
 				<td>

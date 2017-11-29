@@ -2,7 +2,7 @@
 @section('contenido')
 <div class="row">
 	<div class="col-lg-6 col-md-6 col-sm-6 col-sx-6">
-		<h3> Editar Reserva: {{$reserva->dia}} </h3>
+		<h3> Editar Reserva: {{$reserva->horario}} </h3>
 		@if (count($errors)>0)
 		<div class="alert alert-danger">
 			<ul>
@@ -32,25 +32,27 @@
 		</div>
 	</div>
 
-	<div class="col-lg-6 col-sm-6 col-md-6 col-sx-12">
+<div class="col-lg-6 col-sm-6 col-md-6 col-sx-12">
 		<div class="form-group">
-			<label form="dia">Día</label>
-	<select name="dia" class="form-control" value="{{$reserva->dia}}">
-  <option value="Lunes">Lunes</option>
-  <option value="Martes">Martes</option>
-  <option value="Miercoles">Miércoles</option>
-  <option value="Jueves">Jueves</option>
-   <option value="Viernes">Viernes</option>
-  <option value="Sabado">Sábado</option>
-  <option value="Domingo">Domingo</option>
-</select>
-	</div>
-	</div>
-
-		<div class="form-group">
-			<label form="hora">Hora</label>
-			<input type="time" name="hora" class="form-control" value="{{$reserva->hora}}" placeholder="Hora...">
+			<label form="fecha">Fecha: </label>
+			<input type="date" name="fecha" class="form-control" value="{{$reserva->fecha}}" placeholder="Hora...">
 		</div>
+		</div>
+
+		<div class="col-lg-6 col-sm-6 col-md-6 col-sx-12">
+		<div class="form-group">
+			<label>Horario: </label>
+			<select name="idhora" class="form-control">
+				@foreach($horarios as $h)
+				@if ($h->idhora==$reserva->idreserva)
+				<option value="{{$h->idhora}}" selected>{{$h->horario}}</option>
+				@else
+				<option value="{{$h->idhora}}">{{$h->horario}}</option>
+				@endif
+				@endforeach
+			</select>
+		</div>
+	</div>
 
 		<div class="col-lg-6 col-sm-6 col-md-6 col-sx-12">
 		<div class="form-group">
