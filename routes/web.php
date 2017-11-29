@@ -35,7 +35,7 @@ Route::resource('hora','HoraController');
 
 Route::resource('asignatura','AsignaturaController');
 Route::resource('reservaDiscusion','ReservaDiscusionController');
-
+Route::resource('chart','ChartController');
 Route::resource('reserva','ReservaController');
 Route::auth();
 Route::get('/home', 'HomeController@index')->name('home');

@@ -165,7 +165,7 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="{{url('reserva/grafico')}}"><i class="fa fa-circle-o"></i>Gráfico de Barras</a></li>
+                <li><a href="{{url('chart')}}"><i class="fa fa-circle-o"></i>Gráfico de Pastel</a></li>
                 
               </ul>
             </li>

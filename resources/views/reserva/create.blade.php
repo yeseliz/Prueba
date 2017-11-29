@@ -39,12 +39,16 @@
 	</div>
 </div>
 
+
 <div class="col-lg-6 col-sm-6 col-md-6 col-sx-12">
  <div class="form-group">
  <label>Horario: </label>
  <select name="idhora" class="form-control">
  @foreach($horas as $h)
+
+
  <option value="{{$h->idhora}}">{{$h->horario}}</option>
+ 
  @endforeach
 
  </select>

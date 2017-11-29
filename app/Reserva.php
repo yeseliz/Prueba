@@ -1,6 +1,7 @@
 <?php
 
 namespace tpi;
+use tpi\Local;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -30,4 +31,10 @@ class Reserva extends Model
     public function discusion(){
     	return $this=>belongsTo('Discusion');
     }*/
+
+     public function locales()
+   {
+      // hasmany - tiene muchas
+      return $this->belongsto(Local::class);
+   }
 }
