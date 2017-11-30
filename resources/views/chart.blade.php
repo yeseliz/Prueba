@@ -11,9 +11,9 @@
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable([
-        ['Local','horario'],
+        ['Local','Horario'],
         @foreach ($pastel as $pastels)
-        ['{{ $pastels->idlocal}}', {{$pastels->idhora}}],
+        ['{{ $pastels->lugar}}', {{$pastels->idlocal}}],
         @endforeach
         ]);
 
@@ -22,7 +22,6 @@
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
         chart.draw(data, options);
       }
     </script>

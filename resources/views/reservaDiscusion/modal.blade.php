@@ -1,4 +1,4 @@
-<div class="modal fade modal-slide-in-right" aria-hidden="true" role="dialog" tabindex="-1" id="modal-delete-{{$re->idreserva}}">
+<div class="modal fade modal-slide-in-right" aria-hidden="true" role="dialog" tabindex="-1" id="modal-delete-{{$re->idreserva}}"> 
 
 	{{form::Open(array('action'=>array('ReservaDiscusionController@destroy',$re->idreserva),'method'=>'delete'))}}
 

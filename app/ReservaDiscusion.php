@@ -13,7 +13,11 @@ class ReservaDiscusion extends Model
     'idlocal',
     'idasignatura',
     'iddiscusion',
-    'fecha',
-    'hora'
+    'hora_prestamo_disc',
+    'fecha_solicitud_disc',
+    'fecha_asignacion_disc',
+    'hora_inicio_disc',
+    'hora_fin_disc',
+    'estado_disc',
     ];
 }

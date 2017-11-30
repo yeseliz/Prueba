@@ -1,4 +1,5 @@
-@extends('layouts.admin')
+@extends('layouts.admin') 
+<?php date_default_timezone_set('America/El_Salvador'); ?>
 @section('contenido')
 <div class="row">
 	<div class="col-lg-6 col-md-6 col-sm-6 col-sx-12">
@@ -39,24 +40,12 @@
 </div>
 </div>
 
-
-<div class="col-lg-6 col-sm-6 col-md-6 col-sx-12">
- <div class="form-group">
- <label>Horario: </label>
- <select name="idhora" class="form-control">
- @foreach($horas as $hr)
- <option value="{{$hr->idhora}}">{{$hr->horario}}</option>
- @endforeach
- </select>
-</div>
-</div>
-
-<div class="col-lg-6 col-sm-6 col-md-6 col-sx-12">
-	<div class="form-group">
-		<label form="fecha">Fecha: </label>
-		<input type="date" name="fecha" required value="{{old('fecha')}}" class="form-control" placeholder="fecha...">
-	</div>
-</div>
+<label hidden="true">Hora Prestamo para Discusion</label>
+<input type="time" name="hora_prestamo_disc" required value="{{date('H:i:s')}}" placeholder="hora..." hidden="true">
+<label hidden="true">Fecha Solicitud Discusion</label>
+<input type="date" name="fecha_solicitud_disc" required value="{{date('Y-m-d')}}" placeholder="hora..." hidden="true">
+<label hidden="true">Estado Discusion</label>
+<input type="number" name="estado_disc" required value="1" placeholder="estado" hidden="true">
 
 <div class="col-lg-6 col-sm-6 col-md-6 col-sx-12">
  <div class="form-group">
@@ -68,6 +57,30 @@
  </select>
 </div>
 </div>
+
+
+<div class="col-lg-6 col-sm-6 col-md-6 col-sx-12">
+	<div class="form-group">
+		<label form="fecha_asignacion_disc">Fecha Asignacion: </label>
+		<input type="date" name="fecha_asignacion_disc" required value="{{old('fecha_asignacion_disc')}}" class="form-control" placeholder="fecha...">
+	</div>
+</div>
+
+<div class="col-lg-6 col-sm-6 col-md-6 col-sx-12">
+	<div class="form-group">
+		<label form="hora_inicio_disc">Hora Inicio: </label>
+		<input type="time" name="hora_inicio_disc" required value="{{old('hora_inicio_disc')}}" class="form-control" placeholder="hora...">
+	</div>
+</div>
+
+
+<div class="col-lg-6 col-sm-6 col-md-6 col-sx-12">
+	<div class="form-group">
+		<label form="hora_fin_disc">Hora Fin: </label>
+		<input type="time" name="hora_fin_disc" required value="{{old('hora_fin_disc')}}" class="form-control" placeholder="hora...">
+	</div>
+</div>
+
 <div class="col-lg-6 col-sm-6 col-md-6 col-sx-12">
 		<div class="form-group">
 			<button class="btn btn-success" type="submit">Guardar</button>

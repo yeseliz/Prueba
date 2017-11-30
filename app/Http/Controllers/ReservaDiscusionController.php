@@ -5,7 +5,6 @@ namespace tpi\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use tpi\reservaDiscusion;
-use tpi\Hora;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 use tpi\Http\Requests\ReservaDiscusionFormRequest;
@@ -30,13 +29,14 @@ class ReservaDiscusionController extends Controller
         $query=trim($request->get('searchText'));
         $reservas=DB::table('reserva_discu as re')
         ->join('local as l', 're.idlocal','=','l.idlocal')
-        ->join('asignatura as as', 're.idasignatura','=','as.idasignatura')
+        ->join('asignatura as asig', 're.idasignatura','=','asig.idasignatura')
         ->join('discusion as d', 're.iddiscusion','=','d.iddiscusion')
-        ->join('hora as hr', 're.idhora','=','hr.idhora')
-        ->select('re.idreserva','re.fecha','l.lugar', 'l.capacidad', 'as.nombre_asignatura', 'd.actividad', 'd.semana', 'hr.horario')
-        ->where('as.nombre_asignatura','LIKE','%'.$query.'%')
-        ->orderBy('as.nombre_asignatura','asc')
-        ->paginate(6);
+        ->select('re.idreserva','re.fecha_solicitud_disc', 're.hora_prestamo_disc', 're.fecha_asignacion_disc', 're.hora_inicio_disc', 'hora_fin_disc', 'estado_disc','l.lugar', 'l.capacidad', 'asig.nombre_asignatura', 'd.actividad', 'd.fecha', 'd.fecha_fin', 'd.semana')
+        ->where('asig.nombre_asignatura','LIKE','%'.$query.'%')
+        ->where('re.estado_disc', '<>', '0')
+        ->orderBy('re.fecha_solicitud_disc','des')
+        ->orderBy('re.hora_prestamo_disc','des')
+        ->paginate(10);
 
         return view('reservaDiscusion.index',["reservas"=>$reservas,"searchText"=>$query]);
     }
@@ -52,8 +52,7 @@ class ReservaDiscusionController extends Controller
      $discusiones=DB::table('discusion')->where('condicion','=','1')->get();
      $locales=DB::table('local')->where('condicion','=','1')->get();
      $asignaturas=DB::table('asignatura')->where('condicion','=','1')->get();
-     $horas=DB::table('hora')->where('condicion','=','1')->get();
-     return view("reservaDiscusion.create",["discusiones"=>$discusiones, "locales"=>$locales, "asignaturas"=>$asignaturas, "horas"=>$horas]);
+     return view("reservaDiscusion.create",["discusiones"=>$discusiones, "locales"=>$locales, "asignaturas"=>$asignaturas]);
     }
 
     /**
@@ -68,8 +67,13 @@ class ReservaDiscusionController extends Controller
      $reserva->idlocal=$request->get('idlocal');
      $reserva->idasignatura=$request->get('idasignatura');
      $reserva->iddiscusion=$request->get('iddiscusion');
-     $reserva->fecha=$request->get('fecha');
-     $reserva->idhora=$request->get('idhora');
+     $reserva->hora_prestamo_disc=$request->get('hora_prestamo_disc');
+     $reserva->fecha_solicitud_disc=$request->get('fecha_solicitud_disc');
+     $reserva->fecha_asignacion_disc=$request->get('fecha_asignacion_disc');
+     $reserva->hora_inicio_disc=$request->get('hora_inicio_disc');
+     $reserva->hora_fin_disc=$request->get('hora_fin_disc');
+     $reserva->estado_disc=$request->get('estado_disc');
+     
      $reserva->save();
      return Redirect::to('reservaDiscusion');
     }
@@ -106,8 +110,12 @@ class ReservaDiscusionController extends Controller
      $reserva->idlocal=$request->get('idlocal');
      $reserva->idasignatura=$request->get('idasignatura');
      $reserva->iddiscusion=$request->get('iddiscusion');
-     $reserva->fecha=$request->get('fecha');
-     $reserva->idhora=$request->get('idhora');
+     $reserva->hora_prestamo_disc=$request->get('hora_prestamo_disc');
+     $reserva->fecha_solicitud_disc=$request->get('fecha_solicitud_disc');
+     $reserva->fecha_asignacion_disc=$request->get('fecha_asignacion_disc');
+     $reserva->hora_inicio_disc=$request->get('hora_inicio_disc');
+     $reserva->hora_fin_disc=$request->get('hora_fin_disc');
+     $reserva->estado_disc=$request->get('estado_disc');
 
     $reserva->update();
 
@@ -126,4 +134,6 @@ class ReservaDiscusionController extends Controller
      $reserva->delete();
      return Redirect::to('reservaDiscusion');
     }
+
+    
 }

@@ -24,11 +24,13 @@ class ReservaFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'idlocal'=>'required',
-            'fecha'=>'required',
-           
-            'idasignatura'=>'required'
-
+            'idlocal'=>'required',            
+            'hora_prestamo'=>'required',
+            'idasignatura'=>'required',
+            'fecha_solicitud'=>'required',
+            'fecha_asignacion'=>'required',
+            'hora_inicio' =>'required',
+            'hora_fin' =>'required'
         ];
     }
 }

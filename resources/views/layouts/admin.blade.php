@@ -94,17 +94,6 @@
                 <li><a href="{{url('asignatura')}}"><i class="fa fa-circle-o"></i>Gestión de Asignaturas</a></li>
               </ul>
             </li>
-
-             <li class="treeview">
-              <a href="#">
-                <i class="fa fa-calendar"></i>
-                <span>Horarios</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="{{url('hora')}}"><i class="fa fa-circle-o"></i>Gestión de Horarios</a></li>
-              </ul>
-            </li>
             
             <li class="treeview">
               <a href="#">
@@ -124,6 +113,9 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="{{url('local')}}"><i class="fa fa-circle-o"></i>Gestión de Locales</a></li>
+              </ul>
+              <ul class="treeview-menu">
+                <li><a href="{{url('locales-disponibles')}}"><i class="fa fa-circle-o"></i>Locales Disponibles</a></li>
               </ul>
             </li>
                        
@@ -165,8 +157,8 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="{{url('chart')}}"><i class="fa fa-circle-o"></i>Gráfico de Pastel</a></li>
-                
+                <li><a href="{{url('reserva/grafico')}}"><i class="fa fa-circle-o"></i>Gráfico de Barras</a></li>
++                <li><a href="{{url('chart')}}"><i class="fa fa-circle-o"></i>Gráfico de Pastel</a></li>
               </ul>
             </li>
 
@@ -213,16 +205,16 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                  	<div class="row">
-	                  	<div class="col-md-12">
-		                          <!--Contenido-->
+                    <div class="row">
+                      <div class="col-md-12">
+                              <!--Contenido-->
                               @yield('contenido')
-		                          <!--Fin Contenido-->
+                              <!--Fin Contenido-->
                            </div>
                         </div>
-		                    
-                  		</div>
-                  	</div><!-- /.row -->
+                        
+                      </div>
+                    </div><!-- /.row -->
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div><!-- /.col -->

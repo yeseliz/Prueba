@@ -64,6 +64,7 @@
 
                 @yield('content')
             </div>
+            @yield('content2')
         </div>
     </div>
 </div>

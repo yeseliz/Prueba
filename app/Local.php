@@ -12,6 +12,9 @@ class Local extends Model
     protected $fillable=[
     'lugar',
     'capacidad',
-    'condicion'
+    'condicion',
+    'disponibilidad',
+    'cantidad_prestamos'
     ];
+    
 }

@@ -32,24 +32,9 @@
 		</div>
 	</div>
 
-	<div class="col-lg-6 col-sm-6 col-md-6 col-sx-12">
 		<div class="form-group">
-			<label form="dia">Día</label>
-	<select name="dia" class="form-control" value="{{$reserva->dia}}">
-  <option value="Lunes">Lunes</option>
-  <option value="Martes">Martes</option>
-  <option value="Miercoles">Miércoles</option>
-  <option value="Jueves">Jueves</option>
-   <option value="Viernes">Viernes</option>
-  <option value="Sabado">Sábado</option>
-  <option value="Domingo">Domingo</option>
-</select>
-	</div>
-	</div>
-
-		<div class="form-group">
-			<label form="hora">Hora</label>
-			<input type="time" name="hora" class="form-control" value="{{$reserva->hora}}" placeholder="Hora...">
+			<label form="hora_prestamo">Hora</label>
+			<input type="time" name="hora_prestamo" class="form-control" value="{{$reserva->hora_prestamo}}" placeholder="Hora...">
 		</div>
 
 		<div class="col-lg-6 col-sm-6 col-md-6 col-sx-12">

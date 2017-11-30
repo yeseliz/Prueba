@@ -2,6 +2,7 @@
 
 namespace tpi\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use tpi\Reserva;
 
@@ -14,11 +15,27 @@ class ChartController extends Controller
      */
     public function index()
     {
-        $pastel=Reserva::
-        select('reserva.idlocal', 'reserva.idhora')->get();
+         $pastel = DB::table('reserva as r')
+        ->join('local as loc', 'r.idlocal','=','loc.idlocal')
+        ->select('r.idreserva','r.fecha_solicitud', 'r.hora_prestamo','loc.lugar', 'loc.idlocal')
+       // ->count();
+        ->get();
+
+//->select(DB::raw('count(*) as reserva_count, idlocal'))
+        //$pastel=Reserva::
+        //select('')
+
+
+
+
+       // select('reserva.idlocal', 'reserva.idhora')->get();
         //join('reserva', 'idreserva','=','idlocal')->get();
                return view('chart',['pastel'=>$pastel]);
     }
+
+
+
+
 
     /**
      * Show the form for creating a new resource.

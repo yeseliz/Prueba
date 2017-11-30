@@ -14,7 +14,6 @@ extends('layouts.admin')
 			<table class="table table-striped table-bordered table-condensed table-hover">
 				<thead>
 				<th>Asignatura</th>
-				<th>Día</th>
 				<th>Hora</th>
 				<th>Local</th>
 				<th>Opciones</th>
@@ -22,8 +21,7 @@ extends('layouts.admin')
 				@foreach ($reservas as $r)
 				<tr>
 				<td>{{ $r->nombre_asignatura}}
-				<td>{{ $r->dia}}</td>
-				<td>{{ $r->hora}}</td>
+				<td>{{ $r->hora_prestamo}}</td>
 				<td>{{ $r->lugar}}</td>
 				<td>
 				    <a href="{{URL::action('ReservaController@show',$r->idreserva)}}"><button class ="btn btn-success">Ver</button></a>

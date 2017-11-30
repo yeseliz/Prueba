@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.admin') 
 @section('contenido')
 <div class="row">
 <center><h4>LISTA DE RESERVAS DE DISCUSIÓN PROGRAMADAS</h4></center>
@@ -13,20 +13,26 @@
 		<div class="table-responsive">
 			<table class="table table-striped table-bordered table-condensed table-hover">
 				<thead>
-				<th>Asignatura</th>
-				<th>Discusión</th>
-				<th>Horario</th>
-				<th>Fecha</th>
 				<th>Local</th>
+				<th>Asignatura</th>
+				<th>Discusión</th>				
+				<th>Fecha Prestamo</th>
+				<th>Hora Prestamo</th>			
+				<th>Fecha Apartada</th>
+				<th>Hora Inicio</th>
+				<th>Hora Fin</th>
 				<th>Opciones</th>
 				</thead>
 				@foreach ($reservas as $re)
-				<tr>
+				<tr>				
+				<td>{{ $re->lugar}}</td>
 				<td>{{ $re->nombre_asignatura}}</td>
 				<td>{{ $re->actividad}}</td>
-				<td>{{ $re->horario}}</td>
-				<td>{{ $re->fecha}}</td>
-				<td>{{ $re->lugar}}</td>
+				<td>{{ $re->fecha_solicitud_disc}}</td>
+				<td>{{ $re->hora_prestamo_disc}}</td>
+				<td>{{ $re->fecha_asignacion_disc}}</td>
+				<td>{{$re->hora_inicio_disc}}</td>
+				<td>{{$re->hora_fin_disc}}</td>
 				<td>
 					<a href="{{URL::action('ReservaDiscusionController@edit',$re->idreserva)}}"></a>
 					<a href="" data-target="#modal-delete-{{$re->idreserva}}" data-toggle="modal"><button class ="btn btn-success"> Eliminar</button></a>

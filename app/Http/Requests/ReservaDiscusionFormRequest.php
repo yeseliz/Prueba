@@ -23,9 +23,15 @@ class ReservaDiscusionFormRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'fecha'=>'required'
-            
+        return [        
+            'idlocal'=>'required',
+            'idasignatura'=>'required',
+            'iddiscusion'=>'required',
+            'fecha_solicitud_disc'=>'required',
+            'hora_prestamo_disc'=>'required',
+            'fecha_asignacion_disc'=>'required',
+            'hora_inicio_disc'=>'required',
+            'hora_fin_disc'=>'required'            
         ];
     }
 }
